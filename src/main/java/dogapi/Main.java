@@ -13,6 +13,11 @@ public class Main {
         breed = "cat";
         result = getNumberOfSubBreeds(breed, breedFetcher);
         System.out.println(breed + " has " + result + " sub breeds");
+
+        breedFetcher = new DogApiBreedFetcher();
+        breed = "bulldog";
+        result = getNumberOfSubBreeds(breed, breedFetcher);
+        System.out.println(breed + " has " + result + " sub breeds");
     }
 
     /**
@@ -24,8 +29,13 @@ public class Main {
      * returned by the fetcher
      */
     public static int getNumberOfSubBreeds(String breed, BreedFetcher breedFetcher) {
-        // TODO Task 3 implement this code so that it is entirely consistent with its provided documentation.
+        //  Task 3 implement this code so that it is entirely consistent with its provided documentation.
         // return statement included so that the starter code can compile and run.
-        return -1;
+        try {
+            List<String> subs = breedFetcher.getSubBreeds(breed);
+            return subs == null ? 0 : subs.size();
+        } catch (BreedFetcher.BreedNotFoundException e) {
+            return 0;
+        }
     }
 }
